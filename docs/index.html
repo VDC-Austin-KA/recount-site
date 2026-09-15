@@ -13,7 +13,8 @@
     - runs entirely on-device (Whisper model is embedded in the binary)
     - works with no internet
     - 30-day trial, one-time purchase, offline grace  (license.rs, 30 tests passing)
-    - 6.5% lexical word error rate                     (accuracy/RESULTS.md)
+    - 6.5% lexical WER on professional vocabulary      (accuracy/RESULTS.md part 1)
+    - 5.8% WER on real human speech, 40 speakers       (accuracy/RESULTS.md part 3)
 
   NOT BUILT — written in future tense on purpose. Do NOT promote these to present
   tense until each passes a test:
@@ -22,9 +23,11 @@
     - push-to-talk  (today it is a toggle, not hold-to-talk)
     - verbatim vs cleanup switch  (no cleanup pass exists yet)
 
-  The 6.5% figure was measured on SAPI-synthesised speech, which is cleaner than a human
-  in a real room. The page says so. Do not drop that caveat to make the number look
-  better - the entire pitch to this audience is that the vendor does not overstate.
+  Part 3 of RESULTS.md overturned an earlier assumption: synthesised speech is HARDER for
+  whisper than real speech, not easier, because TTS is outside its training distribution.
+  So the professional-vocabulary figures are conservative on delivery. They are still
+  favourable on conditions - quiet room, good mic - and the page says so. Do not drop that
+  caveat to make the number look better; not overstating is the entire pitch here.
 
   NAME: Recount. Still worth a USPTO TESS search before this is printed or listed
   anywhere. Known prior uses, neither in dictation software: "The Recount" (a political
@@ -111,9 +114,12 @@
     </div>
 
     <p class="note">
-      Measured on synthesised speech across five voices, which is cleaner than a person
-      talking in a real room &mdash; so treat these as a favourable case, not a promise.
-      Figures from real recordings will be published before sale, whatever they say.
+      The table above is professional vocabulary, measured on synthesised speech.
+      Separately, on <strong>real recorded human speech from forty different speakers</strong>,
+      the same test reports <strong>5.8%</strong> &mdash; so the synthesised figures are
+      not flattering the result. Both remain favourable cases: quiet rooms, good
+      microphones, clear delivery. A jobsite is harder, and figures for that will be
+      published when they exist, whatever they say.
     </p>
   </div>
 </section>
