@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vdc-austin-ka.github.io/recount-site/sitemap.xml
