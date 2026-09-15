@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Recount</title>
+<meta name="description" content="Recount collects nothing. Audio is processed on your own machine and never transmitted.">
+<link rel="stylesheet" href="style.css">
+
+<!--
+  DRAFT - have a lawyer read this before launch.
+
+  It is short because the product genuinely collects nothing, but "we collect nothing" is
+  still a legal representation and storefronts hold you to it. Two things here are claims
+  about behaviour that MUST stay true in code:
+    1. no audio transmission          - adding any cloud tier makes this page false
+    2. licence check sends only a key - if telemetry is ever added, this page changes FIRST
+-->
+
+<style>
+  .doc { max-width: 42rem; }
+  .doc h2 { font-size: 1.35rem; margin-top: 2.5rem; }
+  .doc h2:first-of-type { margin-top: 1rem; }
+  .doc p, .doc li { color: var(--muted); }
+  .doc strong { color: var(--ink); }
+  .updated { font-size: .88rem; color: var(--muted); margin-top: .5rem; }
+  .keypoint {
+    background: var(--card); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 7px; padding: 1.3rem 1.5rem; margin: 2rem 0;
+  }
+  .keypoint p { margin: 0; color: var(--ink); font-size: 1.05rem; }
+</style>
+</head>
+<body>
+
+<div class="brandbar">
+  <div class="wrap"><a class="wordmark" href="/">Re<span>count</span></a></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <h1>Privacy</h1>
+    <p class="updated">Last updated 15 September 2026</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap doc">
+
+    <div class="keypoint">
+      <p>
+        Recount does not collect, transmit, store or have access to anything you dictate.
+        Speech is converted to text by a model running on your own computer.
+      </p>
+    </div>
+
+    <h2>What happens to your audio</h2>
+    <p>
+      When you dictate, your microphone audio is held in memory on your machine, converted
+      to text locally, and discarded. It is not written to disk, not sent anywhere, and not
+      retained after the text is produced. The speech model is part of the program itself,
+      so no network connection is involved in transcription at all.
+    </p>
+    <p>
+      <strong>This is a property of how the software is built, not a policy we apply.</strong>
+      There is no upload path in the program. Recount transcribes with no internet
+      connection available, which you are welcome to verify by disconnecting.
+    </p>
+
+    <h2>What leaves your machine, and when</h2>
+    <p>Two things, both infrequent, and neither contains anything you dictated.</p>
+    <ul>
+      <li>
+        <strong>Licence checks.</strong> About once a week, your licence key is sent to our
+        payment provider to confirm it is still valid. The key and nothing else. If the
+        check cannot be completed, the software keeps working.
+      </li>
+      <li>
+        <strong>Update checks.</strong> About once a day, the software asks GitHub whether
+        a newer version has been published. This is an ordinary web request that sends no
+        information about you beyond what any web request necessarily reveals, such as your
+        IP address, which GitHub receives and we never see.
+      </li>
+    </ul>
+    <p>
+      Both can be prevented entirely by blocking the application in your firewall. Doing so
+      does not disable dictation.
+    </p>
+
+    <h2>What is stored on your computer</h2>
+    <p>
+      A licence file and your chosen vocabulary setting, under
+      <strong>%LOCALAPPDATA%\Ackerworks\Recount\</strong>. The licence file is encrypted
+      using Windows' own facility so that copying it to another machine renders it
+      unreadable. Neither contains anything you dictated. Uninstalling removes the folder.
+    </p>
+
+    <h2>Analytics and tracking</h2>
+    <p>
+      There are none. No usage statistics, no crash reporting, no identifiers, no
+      advertising, and no third-party analytics of any kind. We cannot tell whether you
+      use the software, how often, or for what.
+    </p>
+
+    <h2>Payment</h2>
+    <p>
+      Purchases are handled by our payment provider, who acts as merchant of record. They
+      receive your billing details directly and are covered by their own privacy policy.
+      We receive a record that a sale occurred and the licence key issued — not your card
+      details.
+    </p>
+
+    <h2>Regulated and confidential work</h2>
+    <p>
+      Because no protected information ever reaches us, we are not a processor or business
+      associate of yours, and there is no data-sharing agreement to negotiate. Recount is
+      a tool that runs on your equipment, in the same category as the word processor you
+      type into.
+    </p>
+    <p>
+      This is a description of how the software behaves, not legal advice about your
+      obligations. If you work under HIPAA, legal privilege, or a similar duty, your own
+      compliance assessment still governs.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      If this ever changes it will be because the software changed, and the date above
+      will change with it. A version of Recount that transmitted your audio would not be
+      a policy update; it would be a different product.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      <a href="mailto:keithacker33@gmail.com">keithacker33@gmail.com</a>
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Recount &middot; a product from <a href="https://ackerworks.com">ackerworks.com</a>
+      &middot; <a href="/">Home</a>
+      &middot; <a href="/terms.html">Terms</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

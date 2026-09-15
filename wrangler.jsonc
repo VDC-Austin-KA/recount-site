@@ -1,0 +1,34 @@
+/**
+ * Static site for the dictation product, served from Cloudflare's edge.
+ *
+ * Separate Worker from the ackerworks.com resume site on purpose: deploying the
+ * product page must never be able to take down the résumé, and vice versa.
+ *
+ * Deploy:  npx wrangler deploy
+ *
+ * Serves recount.ackerworks.com.
+ *
+ * The custom_domain route makes Cloudflare create the DNS record and
+ * certificate automatically, which only works while the ackerworks.com zone is
+ * active on the same account. It is.
+ */
+{
+  "name": "recount-site",
+  "compatibility_date": "2026-09-15",
+
+  // Only ./public is uploaded, so notes and configs in this folder can never be served.
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+
+  "routes": [
+    { "pattern": "recount.ackerworks.com", "custom_domain": true }
+  ],
+
+  // Publishes to *.workers.dev too, so the page can be previewed before the
+  // subdomain is pointed at it.
+  "workers_dev": true,
+
+  "observability": { "enabled": true }
+}

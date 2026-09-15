@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recount — dictation that never leaves your PC</title>
+<meta name="description" content="Local voice dictation for Windows. Your audio never leaves the machine. Built for legal, inspection and clinical documentation.">
+
+<!--
+  HONESTY AUDIT — check this list before this page goes live anywhere.
+
+  TRUE TODAY, safe to state in present tense:
+    - runs entirely on-device (Whisper model is embedded in the binary)
+    - works with no internet
+    - 30-day trial, one-time purchase, offline grace  (license.rs, 30 tests passing)
+    - 6.5% lexical word error rate                     (accuracy/RESULTS.md)
+
+  NOT BUILT — written in future tense on purpose. Do NOT promote these to present
+  tense until each passes a test:
+    - Electron / Teams / IDE / RDP / Citrix text injection   <- the differentiator
+    - shipped legal / inspection / clinical dictionaries
+    - push-to-talk  (today it is a toggle, not hold-to-talk)
+    - verbatim vs cleanup switch  (no cleanup pass exists yet)
+
+  The 6.5% figure was measured on SAPI-synthesised speech, which is cleaner than a human
+  in a real room. The page says so. Do not drop that caveat to make the number look
+  better - the entire pitch to this audience is that the vendor does not overstate.
+
+  NAME: Recount. Still worth a USPTO TESS search before this is printed or listed
+  anywhere. Known prior uses, neither in dictation software: "The Recount" (a political
+  video-news brand, absorbed 2023) and the HBO film "Recount".
+  The earlier working name "Voize" was dropped - voize.ai is a funded company in this
+  exact service class.
+-->
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="brandbar">
+  <div class="wrap"><a class="wordmark" href="/">Re<span>count</span></a></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Windows &middot; works offline</span>
+    <h1>Dictation that never leaves your PC.</h1>
+    <p class="standfirst">
+      Recount is speech to text for people who document for a living. The model runs on
+      your own machine, so nothing you say is uploaded, stored, or handed to anyone else.
+    </p>
+    <div class="actions">
+      <a class="btn" href="mailto:keithacker33@gmail.com?subject=Early%20access">Get notified at launch</a>
+      <span class="aside">No account. No subscription. One payment.</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Your recording stays on the machine</h2>
+    <p class="lede">
+      This is not a privacy policy or a setting you have to trust. There is no upload
+      path in the software &mdash; the speech model is built into the program and runs on
+      your own processor.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Nothing is transmitted</h3>
+        <p>What is never sent cannot be intercepted, retained by a vendor, or produced in discovery against you.</p>
+      </div>
+      <div class="card">
+        <h3>No business associate agreement</h3>
+        <p>Because no protected information reaches us, there is no agreement to negotiate and no vendor to add to your risk register.</p>
+      </div>
+      <div class="card">
+        <h3>Works with no connection</h3>
+        <p>In a basement, on a jobsite, inside a hospital firewall. A dropped connection changes nothing.</p>
+      </div>
+      <div class="card">
+        <h3>Yours once you buy it</h3>
+        <p>A one-time purchase that keeps working. No monthly seat fee and no minute allowance to run out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Measured, not claimed</h2>
+    <p class="lede">
+      Most dictation software asks you to take accuracy on faith. These are real numbers
+      from a published test set of legal, inspection and clinical phrasing &mdash; and the
+      method ships with the software so you can run it yourself.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Vocabulary</th><th>Word error rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Everyday speech</td><td class="n">0.0%</td></tr>
+          <tr><td>Clinical notes</td><td class="n">3.8%</td></tr>
+          <tr><td>Legal</td><td class="n">7.0%</td></tr>
+          <tr><td>Field inspection</td><td class="n">9.8%</td></tr>
+          <tr><td><strong>Overall</strong></td><td class="n">6.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      Measured on synthesised speech across five voices, which is cleaner than a person
+      talking in a real room &mdash; so treat these as a favourable case, not a promise.
+      Figures from real recordings will be published before sale, whatever they say.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>It will work where dictation usually fails</h2>
+    <p class="lede">
+      Windows dictation cannot put text into certain applications at all. You press the
+      key, you speak, and nothing appears. Closing that gap is the reason this is being
+      built.
+    </p>
+
+    <div class="apps">
+      <div class="app"><span class="tick">&rarr;</span> Microsoft Teams</div>
+      <div class="app"><span class="tick">&rarr;</span> Slack</div>
+      <div class="app"><span class="tick">&rarr;</span> Remote desktop</div>
+      <div class="app"><span class="tick">&rarr;</span> Citrix</div>
+      <div class="app"><span class="tick">&rarr;</span> VMware Horizon</div>
+      <div class="app"><span class="tick">&rarr;</span> Code editors</div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:650;margin:2rem 0 .5rem">Three ways in, because one is never enough</h3>
+    <p class="lede" style="margin-bottom:1rem">
+      Most dictation tools send synthetic keystrokes and stop there. That silently fails
+      in remote sessions, which forward real key codes and have nothing to forward.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Typing</h3>
+        <p>The default. Leaves your clipboard untouched and works in ordinary applications.</p>
+      </div>
+      <div class="card">
+        <h3>Pasting</h3>
+        <p>For Teams, Java and Qt applications that ignore synthetic keystrokes. Your clipboard is put back afterwards.</p>
+      </div>
+      <div class="card">
+        <h3>Key presses</h3>
+        <p>Real keystrokes matched to the target's keyboard layout &mdash; for Citrix and locked-down remote desktops where the clipboard is disabled by policy.</p>
+      </div>
+    </div>
+
+    <p class="note">
+      All three are built and switchable from the tray. The application names above are
+      written in future tense on purpose: they have not yet been tested inside a real
+      Citrix or remote desktop session, and until they are, that claim is not one to make.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Built around the words you actually use</h2>
+    <p class="lede">
+      General dictation fails hardest on the terms that matter most in professional work.
+      Planned releases will ship with the vocabulary already loaded, rather than asking
+      you to add words one at a time.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Legal</h3>
+        <p>Certiorari, fiduciary, indemnification &mdash; and citations that survive transcription in one piece.</p>
+      </div>
+      <div class="card">
+        <h3>Field inspection</h3>
+        <p>Efflorescence, condensate, spalling, flashing. The terms that come out as nonsense elsewhere.</p>
+      </div>
+      <div class="card">
+        <h3>Clinical notes</h3>
+        <p>Documentation vocabulary, with audio that never leaves the room it was recorded in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Price</h2>
+    <div class="price-box">
+      <div class="amount">$29<small>one time &middot; two machines</small></div>
+      <div class="compare">
+        No subscription, no per-seat setup fee, and no annual renewal to forget about.
+        The established cloud option in healthcare dictation runs
+        <strong style="color:var(--ink)">$79&ndash;99 per user per month, plus a $525 setup
+        fee per seat</strong>, and stops working when the internet does.
+      </div>
+    </div>
+
+    <div class="status">
+      <strong>In development &mdash; nothing is for sale yet.</strong>
+      This page describes what is being built and what has been measured so far. Leave an
+      address and you will hear once it is ready, and not before then.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Recount &middot; a product from <a href="https://ackerworks.com">ackerworks.com</a>
+      &middot; <a href="/privacy.html">Privacy</a>
+      &middot; <a href="/terms.html">Terms</a>
+      &middot; Windows 10 and 11.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
