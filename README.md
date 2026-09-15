@@ -15,20 +15,19 @@ docs/
 
 ## Deploying
 
-Two independent paths, so one being blocked does not stop the other:
+**No CI, no Actions, no secrets.** Pushing to `main` is the deploy: GitHub Pages serves
+`docs/` straight from the branch using its legacy builder, which runs no Actions job.
 
-- **GitHub Pages** serves `docs/` straight from the branch. No Actions run, no secrets,
-  no billing — live at https://vdc-austin-ka.github.io/recount-site/
-- **Cloudflare** serves the same directory at recount.ackerworks.com once credentials
-  exist.
+Live at https://vdc-austin-ka.github.io/recount-site/
 
-Pushes to `main` deploy automatically. Add two repository secrets first, both copyable
-from the `ackworks` repo settings:
+For the custom domain, run it yourself when you want it — also no CI:
 
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
+```
+npx wrangler login
+npx wrangler deploy
+```
 
-Or deploy by hand: `npx wrangler login && npx wrangler deploy`.
+That puts the same `docs/` directory on recount.ackerworks.com.
 
 ## Before this goes live
 
