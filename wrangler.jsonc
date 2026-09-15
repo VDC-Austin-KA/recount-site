@@ -16,9 +16,11 @@
   "name": "recount-site",
   "compatibility_date": "2026-09-15",
 
-  // Only ./public is uploaded, so notes and configs in this folder can never be served.
+  // Only ./docs is uploaded, so notes and configs in this folder can never be served.
+  // Named docs/ rather than public/ because GitHub Pages can serve a branch from /docs
+  // with no Actions run - which matters while Actions billing is locked.
   "assets": {
-    "directory": "./public",
+    "directory": "./docs",
     "not_found_handling": "404-page"
   },
 

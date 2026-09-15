@@ -6,7 +6,7 @@ dictation for Windows.
 Plain HTML and one stylesheet. No build step, no framework, no dependencies.
 
 ```
-public/
+docs/
   index.html     landing page
   privacy.html   privacy policy
   terms.html     licence terms
@@ -14,6 +14,13 @@ public/
 ```
 
 ## Deploying
+
+Two independent paths, so one being blocked does not stop the other:
+
+- **GitHub Pages** serves `docs/` straight from the branch. No Actions run, no secrets,
+  no billing — live at https://vdc-austin-ka.github.io/recount-site/
+- **Cloudflare** serves the same directory at recount.ackerworks.com once credentials
+  exist.
 
 Pushes to `main` deploy automatically. Add two repository secrets first, both copyable
 from the `ackworks` repo settings:
