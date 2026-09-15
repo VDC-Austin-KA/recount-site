@@ -9,6 +9,11 @@
 <!--
   HONESTY AUDIT — check this list before this page goes live anywhere.
 
+  SHIPPING as of v0.1.0 - installer published at
+  github.com/VDC-Austin-KA/Recount/releases, checkout live at Lemon Squeezy product
+  982600. The build is UNSIGNED and the page says so; do not remove that notice until a
+  certificate is actually in place.
+
   TRUE TODAY, safe to state in present tense:
     - runs entirely on-device (Whisper model is embedded in the binary)
     - works with no internet
@@ -36,6 +41,23 @@
   exact service class.
 -->
 
+<link rel="canonical" href="https://vdc-austin-ka.github.io/recount-site/">
+
+<!-- Open Graph / Twitter. A shared link with no preview card converts far worse, and
+     Show HN plus Product Hunt are both link-first channels. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Recount">
+<meta property="og:title" content="Recount - dictation that never leaves your PC">
+<meta property="og:description" content="Local voice dictation for Windows. Your audio never leaves the machine. Built for legal, inspection and clinical documentation. 5.8% measured word error rate.">
+<meta property="og:url" content="https://vdc-austin-ka.github.io/recount-site/">
+<meta property="og:image" content="https://vdc-austin-ka.github.io/recount-site/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Recount - dictation that never leaves your PC">
+<meta name="twitter:description" content="Local voice dictation for Windows. Your audio never leaves the machine. 5.8% measured word error rate.">
+<meta name="twitter:image" content="https://vdc-austin-ka.github.io/recount-site/og.png">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,9 +75,12 @@
       your own machine, so nothing you say is uploaded, stored, or handed to anyone else.
     </p>
     <div class="actions">
-      <a class="btn" href="mailto:keithacker33@gmail.com?subject=Early%20access">Get notified at launch</a>
-      <span class="aside">No account. No subscription. One payment.</span>
+      <a class="btn" href="https://github.com/VDC-Austin-KA/Recount/releases/latest">Download &mdash; 30-day trial</a>
+      <a class="btn-secondary" href="https://techknowledgy.lemonsqueezy.com/checkout/buy/3e2da440-399d-4f2e-a441-3e3bd7bd8b94">Buy &mdash; $29.99</a>
     </div>
+    <p class="aside" style="margin-top:1rem">
+      Windows 10 and 11 &middot; no account, no subscription, one payment &middot; two machines
+    </p>
   </div>
 </header>
 
@@ -209,10 +234,16 @@
     </div>
 
     <div class="status">
-      <strong>In development &mdash; nothing is for sale yet.</strong>
-      This page describes what is being built and what has been measured so far. Leave an
-      address and you will hear once it is ready, and not before then.
+      <strong>Windows will warn you on first run.</strong> This build is not yet
+      code-signed, so you will see "Windows protected your PC". Choose
+      <strong>More info &rarr; Run anyway</strong>. A certificate is being obtained; until
+      then the warning is expected and is not a sign anything is wrong. If you would rather
+      wait for a signed build, that is a reasonable thing to do.
     </div>
+    <p style="margin-top:1.5rem">
+      <a class="btn" href="https://github.com/VDC-Austin-KA/Recount/releases/latest">Download the trial</a>
+      <span class="aside" style="margin-left:1rem">Full features, 30 days, no card.</span>
+    </p>
   </div>
 </section>
 
