@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why dictation fails in Citrix and remote desktop — and how to fix it</title>
+<meta name="description" content="Dictation software types nothing inside Citrix, RDP and VMware Horizon. The cause is scan codes: remote sessions forward them, and most dictation tools send synthetic Unicode keystrokes that have none. Three fixes, with the trade-offs of each.">
+<link rel="canonical" href="https://ackerworks.com/dictation-citrix-rdp.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Recount">
+<meta property="og:title" content="Why dictation fails in Citrix and remote desktop">
+<meta property="og:description" content="The cause is scan codes. Remote sessions forward them; synthetic Unicode keystrokes have none, so the remote application receives silence. Three fixes and their trade-offs.">
+<meta property="og:url" content="https://ackerworks.com/dictation-citrix-rdp.html">
+<meta property="og:image" content="https://ackerworks.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="style.css">
+<style>
+  .doc { max-width: 44rem; }
+  .doc h2 { font-size: 1.5rem; margin-top: 2.8rem; }
+  .doc h3 { font-size: 1.05rem; margin-top: 1.8rem; }
+  .doc p, .doc li { color: var(--muted); }
+  .doc strong { color: var(--ink); }
+  code {
+    font: .9em "Consolas", monospace;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 3px; padding: .1rem .35rem; color: var(--ink);
+  }
+  .verdict {
+    background: var(--card); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); border-radius: 7px;
+    padding: 1.3rem 1.5rem; margin: 2rem 0;
+  }
+  .verdict p { margin: 0; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="brandbar">
+  <div class="wrap"><a class="wordmark" href="/">Re<span>count</span></a></div>
+</div>
+
+<header>
+  <div class="wrap">
+    <h1>Why dictation types nothing inside Citrix</h1>
+    <p class="standfirst">
+      You press the hotkey, you speak, the tool says it transcribed you — and the remote
+      window stays empty. This is not a bug in your microphone. It is a consequence of how
+      remote sessions carry keystrokes.
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap doc">
+
+    <h2>The cause</h2>
+
+    <p>
+      Windows offers more than one way to synthesise a keystroke. Most dictation software
+      uses <code>SendInput</code> with the <code>KEYEVENTF_UNICODE</code> flag, which says
+      in effect <em>"a character arrived"</em> and carries the character itself. It does
+      not correspond to any physical key, so it has no <strong>scan code</strong> — the
+      hardware-level number a real keyboard emits.
+    </p>
+
+    <p>
+      That works everywhere locally. Remote desktop is different. Citrix, RDP and VMware
+      Horizon do not forward characters; they forward <strong>scan codes</strong>, because
+      the remote machine needs to apply its own keyboard layout. When a synthetic Unicode
+      event arrives at the client, there is no scan code to send onward.
+    </p>
+
+    <div class="verdict">
+      <p>
+        The remote application receives nothing at all. No error, no partial text —
+        silence. Which is why this looks like the dictation tool is broken rather than
+        incompatible.
+      </p>
+    </div>
+
+    <p>
+      The same failure shows up in some Java and Qt applications, which read scan codes
+      directly, and in anything running a low-level keyboard hook that filters injected
+      input.
+    </p>
+
+    <h2>Three fixes, and what each costs</h2>
+
+    <h3>1. Clipboard paste</h3>
+    <p>
+      Put the text on the clipboard and send Ctrl+V. The remote application performs its
+      own native paste, so it works wherever paste works.
+    </p>
+    <p>
+      <strong>The catch:</strong> inside a remote session, Ctrl+V pastes from the
+      <em>remote</em> clipboard, which only matches your local one when <strong>clipboard
+      redirection is enabled</strong>. Locked-down legal and healthcare environments
+      routinely disable it for data-loss prevention — precisely the places most likely to
+      hit this problem in the first place. It also briefly takes over your clipboard.
+    </p>
+
+    <h3>2. Real scan codes</h3>
+    <p>
+      Look each character up against the <em>target window's</em> keyboard layout, find
+      the virtual key and shift state, convert to a scan code, and send that. The remote
+      session forwards it like any real keypress. No clipboard involved, so policy cannot
+      switch it off.
+    </p>
+    <p>
+      <strong>The catch:</strong> a scan code only exists for characters reachable on the
+      active layout. An em dash, a curly quote, an accented letter on a US layout — none
+      of those have a key to press, and have to fall back to Unicode individually, which
+      the remote session will still drop.
+    </p>
+
+    <h3>3. Run the dictation tool inside the session</h3>
+    <p>
+      Sidesteps the problem entirely, and is often impossible: the remote environment is
+      usually locked down, has no microphone passthrough, or forbids installing anything.
+    </p>
+
+    <h2>How Recount handles it</h2>
+
+    <p>
+      Recount ships all three insertion methods and lets you switch between them from the
+      tray, because <strong>no single one reaches everywhere</strong>:
+    </p>
+
+    <div class="apps">
+      <div class="app"><span class="tick">&rarr;</span> Type — the default, leaves your clipboard alone</div>
+      <div class="app"><span class="tick">&rarr;</span> Paste — Teams, Java, Qt, most remote desktops</div>
+      <div class="app"><span class="tick">&rarr;</span> Key presses — Citrix and locked-down sessions</div>
+    </div>
+
+    <p style="margin-top:1.4rem">
+      If dictation stops working in one particular application, you change one setting
+      rather than changing product.
+    </p>
+
+    <p class="note">
+      Stated plainly: the scan-code path is built and its layout lookup is under test, but
+      it has <strong>not yet been verified inside a real Citrix session</strong>. If you
+      try it there, the fourteen-day trial costs nothing and I would genuinely like to know
+      the result either way.
+    </p>
+
+    <h2>It also does not send your audio anywhere</h2>
+    <p>
+      People dictating inside Citrix are usually doing so because the work is confidential
+      enough to live on someone else's infrastructure. Recount runs the speech model on
+      your own machine — there is no upload path in the software, so there is no cloud
+      vendor to add to a risk register and no business associate agreement to negotiate.
+    </p>
+
+    <p style="margin-top:1.6rem">
+      <a class="btn" href="https://github.com/VDC-Austin-KA/Recount/releases/latest">Download the trial</a>
+      <a class="btn-secondary" style="margin-left:.7rem" href="/">What Recount is</a>
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Recount &middot; <a href="/">Home</a> &middot;
+      <a href="/dragon-alternative.html">vs Dragon</a> &middot;
+      <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
