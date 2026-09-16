@@ -34,7 +34,7 @@
 
   // Publishes to *.workers.dev too, so the page can be previewed before the
   // subdomain is pointed at it.
-  "workers_dev": true,
+  "workers_dev": false,
 
   "observability": { "enabled": true }
 }
