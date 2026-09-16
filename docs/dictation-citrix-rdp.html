@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Why dictation fails in Citrix and remote desktop — and how to fix it</title>
-<meta name="description" content="Dictation software types nothing inside Citrix, RDP and VMware Horizon. The cause is scan codes: remote sessions forward them, and most dictation tools send synthetic Unicode keystrokes that have none. Three fixes, with the trade-offs of each.">
+<meta name="description" content="Dictation software types nothing inside Citrix, RDP and VMware Horizon. The cause is scan codes: remote sessions forward them, and most dictation tools send synthetic Unicode keystrokes that have none. Three fixes, the trade-offs of each, and who else solves it.">
 <link rel="canonical" href="https://ackerworks.com/dictation-citrix-rdp.html">
 
 <meta property="og:type" content="article">
@@ -119,6 +119,52 @@
     <p>
       Sidesteps the problem entirely, and is often impossible: the remote environment is
       usually locked down, has no microphone passthrough, or forbids installing anything.
+    </p>
+
+    <h2>Who else solves this</h2>
+
+    <p>
+      <strong>DictaFlow</strong> handles Citrix and VDI dictation too, and has done for
+      longer. If you want a subscription, cross-platform support and a vendor with this as
+      their whole pitch, it is a reasonable thing to buy and you should look at it.
+    </p>
+
+    <p>
+      The difference worth knowing is where your audio goes. DictaFlow processes speech in
+      the cloud, on a monthly subscription. Recount processes it on your own machine and
+      is bought once.
+    </p>
+
+    <div class="verdict">
+      <p>
+        That distinction matters most to exactly the people who end up dictating inside
+        Citrix in the first place: if the work is sensitive enough to live on someone
+        else's infrastructure, sending the audio to a third party may be the thing your
+        IT department objects to.
+      </p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>&nbsp;</th><th>DictaFlow</th><th>Recount</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="path">Price</td><td class="n">$7/month</td><td class="n"><strong>$29.99 once</strong></td></tr>
+          <tr><td class="path">Three years</td><td class="n">~$252</td><td class="n"><strong>$29.99</strong></td></tr>
+          <tr><td class="path">Speech processed</td><td class="why">In the cloud</td><td class="why">On your machine</td></tr>
+          <tr><td class="path">Works with no internet</td><td class="why">No</td><td class="why">Yes</td></tr>
+          <tr><td class="path">Platforms</td><td class="why">Windows, Mac, iOS, Android</td><td class="why">Windows only</td></tr>
+          <tr><td class="path">Citrix / VDI</td><td class="why">Yes, and longer</td><td class="why">Yes, untested in a live session</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      If you want it on a phone or a Mac, or you would rather someone else carried the
+      maintenance, pay the subscription. The case for buying once is narrower than it
+      sounds: it is for people who will still be dictating in three years, on Windows,
+      and would prefer the audio never left the building.
     </p>
 
     <h2>How Recount handles it</h2>
