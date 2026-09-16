@@ -24,7 +24,11 @@
     "not_found_handling": "404-page"
   },
 
+  // The product takes the apex now; the resume moved to resume.ackerworks.com. Both
+  // hostnames are listed so an existing link to either keeps working.
   "routes": [
+    { "pattern": "ackerworks.com", "custom_domain": true },
+    { "pattern": "www.ackerworks.com", "custom_domain": true },
     { "pattern": "recount.ackerworks.com", "custom_domain": true }
   ],
 
